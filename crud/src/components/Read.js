@@ -14,7 +14,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useHistory } from "react-router-dom";
 
 
-const Read = ({ initialDetails, updatedData }) => {
+const Read = ({ initialDetails, updatedData,handleDeleteClick }) => {
   console.log("initialDetails", initialDetails);
 
   const history = useHistory();
@@ -71,7 +71,8 @@ const Read = ({ initialDetails, updatedData }) => {
                       });
                       console.log(remainingItem);
                       updatedData(remainingItem);
-                      }} />
+                      }
+                        }/>
                   </IconButton> 
                    <IconButton aria-label="edit">
                     <EditIcon  onClick={()=>{history.push("/edit-user/"+index)}} />

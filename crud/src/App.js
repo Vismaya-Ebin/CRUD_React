@@ -5,7 +5,8 @@ import { useState } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import Notfound from "./components/Notfound";
 import { Welcome } from "./components/Welcome";
- import {Update} from './components/Update.js';
+import { Update } from "./components/Update.js";
+
 function App() {
   const initialData = [
     {
@@ -26,6 +27,18 @@ function App() {
   ];
 
   const [initialDetails, updatedData] = useState(initialData);
+
+  const [id, updatedId] = useState("");
+  const [name, updatedName] = useState("");
+  const [age, updatedAge] = useState("");
+  const [editedList, updatedEditedList] = useState({});
+
+  const clearFields = () => {
+    updatedId("");
+    updatedName("");
+    updatedAge("");
+  };
+
   const style = {
     fontWeight: "bold",
     fontSize: "1.3rem",
@@ -53,13 +66,24 @@ function App() {
           <Welcome />
         </Route>
         <Route path="/create-user">
-          <Create initialDetails={initialDetails} updatedData={updatedData} />
+          <Create
+            initialDetails={initialDetails}
+            updatedData={updatedData}
+            id={id}
+            updatedId={updatedId}
+            name={name}
+            updatedName={updatedName}
+            age={age}
+            updatedAge={updatedAge}
+            clearFields={clearFields}
+          />
         </Route>
         <Route path="/users">
-          
-          <Read initialDetails = {initialDetails} updatedData = {updatedData} />
+          <Read initialDetails={initialDetails} updatedData={updatedData} />
         </Route>
-        <Route path="/edit-user/:index"><Update/></Route>
+        <Route path="/edit-user/:index">
+          <Update initialDetails={initialDetails} updatedData={updatedData} editedList={editedList} updatedEditedList={updatedEditedList} />
+        </Route>
         <Route path="**">
           <Notfound />
         </Route>
