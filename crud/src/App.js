@@ -65,7 +65,9 @@ const updateData = (newData) => {
     <div>
       <header className="header">
         <ul>
-        
+        <li style={style}>
+            <Link to="/">HOME </Link>
+          </li>
           <li style={style}>
             <Link to="/create-user">CREATE </Link>
           </li>
@@ -76,9 +78,7 @@ const updateData = (newData) => {
       </header>
       <hr />
       <Switch>
-        <Route path="/" exact>
-          <Welcome />
-        </Route>
+       <Route path="/" exact> <Welcome/></Route>
         <Route path="/create-user">
           <Create
             initialDetails={initialDetails}

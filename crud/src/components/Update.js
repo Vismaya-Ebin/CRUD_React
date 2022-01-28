@@ -26,7 +26,7 @@ export function Update({
 
   return (
     <div>
-      <h2 style={styles}>Edit User {index}</h2>
+      <h2 style={styles}>Update Name and Age of Employee {index}</h2>
       <div className="create">
         <TextField
           id="outlined-basic"

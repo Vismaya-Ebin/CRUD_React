@@ -1,13 +1,19 @@
-export function Welcome (){
+import WelcomeImage from "../assets/welcome.jpg";
 
-    const style ={
-        display:"flex",
-        flexDirection:"column",
-        
-        textAlign: "center",
-        fontSize:"2rem",
-        flexWrap: "wrap",
-        fontWeight:"bold",
-    }
-    return(<div style={style}>Welcome</div>);
+export function Welcome() {
+  const style = {
+    display: "flex",
+    flexDirection: "column",
+    textAlign: "center",
+    flexWrap: "wrap",
+  };
+  const imageStyle = {
+    objectFit: "fill",
+    width: "100%",
+  };
+  return (
+    <div style={style}>
+      <img style={imageStyle} src={WelcomeImage} alt="" />
+    </div>
+  );
 }
