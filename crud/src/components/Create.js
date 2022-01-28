@@ -5,12 +5,17 @@ import '../App.css';
 
 
 const Create = (initialDetails ,updatedData) => {
-    const style ={color:"white",background:"black"};
+    const style ={color:"white",background:"black",textAlign:"center",borderRadius:"5px", margin: "2rem 4rem"};
+    const styles ={color:"white",textAlign:"center", margin: "2rem 4rem"};
     const [id,updatedId] = useState("");
     const [name,updatedName] = useState("");
     const [age,updatedAge] = useState("");
+
     return (
+        <main>
+            <h2 style={styles}>Add Employee Details</h2>
         <div className="create">
+           
         
            <TextField id="outlined-basic" label="ID" variant="outlined" color="secondary"fullWidth onChange={(e)=>{updatedId(e.target.value)}} />
            <TextField id="outlined-basic" label="NAME" variant="outlined" color="secondary" fullWidth onChange={(e)=>{updatedName(e.target.value)}} />
@@ -22,12 +27,14 @@ const Create = (initialDetails ,updatedData) => {
                    age:age,}
                    ;
                console.log(newEmpData);
+               
                updatedData([...initialDetails,newEmpData]);
            }}>Submit</Button>
             
        
             
         </div>
+        </main>
     );
 }
 

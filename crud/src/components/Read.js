@@ -11,10 +11,13 @@ import IconButton from "@mui/material/IconButton";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from '@mui/icons-material/Edit';
+import { useHistory } from "react-router-dom";
 
-const Read = ({ initialDetails,updatedData }) => {
+
+const Read = ({ initialDetails, updatedData }) => {
   console.log("initialDetails", initialDetails);
-  console.log("updatedData", updatedData);
+
+  const history = useHistory();
   const textDetails = {
     textAlign: "center",
     color: "white",
@@ -69,10 +72,10 @@ const Read = ({ initialDetails,updatedData }) => {
                       console.log(remainingItem);
                       updatedData(remainingItem);
                       }} />
-                  </IconButton>
-                  <IconButton aria-label="edit">
-                    <EditIcon  onClick={()=>{alert("Edit")}} />
-                  </IconButton>
+                  </IconButton> 
+                   <IconButton aria-label="edit">
+                    <EditIcon  onClick={()=>{history.push("/edit-user/"+index)}} />
+                   </IconButton>
                 </ListItem>
               </List>
             </div>

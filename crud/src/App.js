@@ -2,8 +2,10 @@ import "./App.css";
 import Create from "./components/Create.js";
 import Read from "./components/Read.js";
 import { useState } from "react";
-import { Switch, Route, Link, Redirect } from "react-router-dom";
-
+import { Switch, Route, Link } from "react-router-dom";
+import Notfound from "./components/Notfound";
+import { Welcome } from "./components/Welcome";
+ import {Update} from './components/Update.js';
 function App() {
   const initialData = [
     {
@@ -34,27 +36,32 @@ function App() {
     <div>
       <header className="header">
         <ul>
-          {/* <li><Link to="/">HOME</Link></li> */}
           <li style={style}>
-            <Link to="/add">ADD </Link>
+            <Link to="/">HOME</Link>
           </li>
           <li style={style}>
-            <Link to="/show">SHOW</Link>
+            <Link to="/create-user">CREATE </Link>
+          </li>
+          <li style={style}>
+            <Link to="/users">SHOW</Link>
           </li>
         </ul>
       </header>
       <hr />
       <Switch>
         <Route path="/" exact>
-          {" "}
+          <Welcome />
         </Route>
-        <Route path="/add">
-          {" "}
-          <Create initialDetails={initialDetails} updatedData={updatedData} />{" "}
+        <Route path="/create-user">
+          <Create initialDetails={initialDetails} updatedData={updatedData} />
         </Route>
-        <Route path="/show">
-          {" "}
-          <Read initialDetails={initialDetails} updatedData={updatedData} />
+        <Route path="/users">
+          
+          <Read initialDetails = {initialDetails} updatedData = {updatedData} />
+        </Route>
+        <Route path="/edit-user/:index"><Update/></Route>
+        <Route path="**">
+          <Notfound />
         </Route>
       </Switch>
     </div>
