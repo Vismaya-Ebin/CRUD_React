@@ -39,6 +39,22 @@ function App() {
     updatedAge("");
   };
 
+
+const updateData = (newData) => {
+  console.log("Incoming Data from Comp",newData);
+  const updatedList = initialData.map(data => {
+    console.log("Array Data",data);
+    if (data.id === newData.id) {
+      data.name = newData.name
+      data.age = newData.age
+    }
+    return data;
+ });
+ console.log(updatedList);
+ console.log("FinalList",updatedList);
+  updatedData(updatedList);
+ 
+}
   const style = {
     fontWeight: "bold",
     fontSize: "1.3rem",
@@ -49,9 +65,7 @@ function App() {
     <div>
       <header className="header">
         <ul>
-          <li style={style}>
-            <Link to="/">HOME</Link>
-          </li>
+        
           <li style={style}>
             <Link to="/create-user">CREATE </Link>
           </li>
@@ -82,7 +96,7 @@ function App() {
           <Read initialDetails={initialDetails} updatedData={updatedData} />
         </Route>
         <Route path="/edit-user/:index">
-          <Update initialDetails={initialDetails} updatedData={updatedData} editedList={editedList} updatedEditedList={updatedEditedList} />
+          <Update initialDetails={initialDetails} updateData={updateData} />
         </Route>
         <Route path="**">
           <Notfound />

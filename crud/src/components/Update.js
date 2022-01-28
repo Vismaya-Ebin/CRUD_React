@@ -4,15 +4,9 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 export function Update({
-  updatedData,
-  initialDetails,editedList, updatedEditedList,
-  id,
-  updatedId,
-  name,
-  updatedName,
-  age,
-  updatedAge,
-  handleEditClick
+ 
+  initialDetails,updateData
+  
 }) {
   const { index } = useParams();
   const style = {
@@ -24,7 +18,11 @@ export function Update({
   };
   const styles = { color: "white", textAlign: "center", margin: "2rem 4rem" };
   const selectedUser = initialDetails[index];
-  console.log("selectedUser", selectedUser);
+   const [id, setId] = useState(selectedUser.id);
+  const [name, setName] = useState(selectedUser.name);
+  const [age, setAge] = useState(selectedUser.age);
+  
+  
 
   return (
     <div>
@@ -37,6 +35,8 @@ export function Update({
           variant="outlined"
           color="secondary"
           fullWidth
+          onChange={(e)=>{setId(e.target.value)}}
+         
          
         />
         <TextField
@@ -46,9 +46,8 @@ export function Update({
           variant="outlined"
           color="secondary"
           fullWidth
-          // onChange={(e) => {
-          //   updatedName(e.target.value);
-          // }}
+          onChange={(e)=>{setName(e.target.value)}}
+        
         />
         <TextField
           id="outlined-basic"
@@ -56,16 +55,15 @@ export function Update({
           label="AGE"
           variant="outlined"
           color="secondary"
+          onChange={(e)=>{setAge(e.target.value)}}
           fullWidth
-          // onChange={(e) => {
-          //   updatedAge(e.target.value);
-          // }}
+         
         />
         <Button
           style={style}
           variant="contained"
           fullWidth
-          onClick={()=>{updatedEditedList(selectedUser)}}
+          onClick={()=>{updateData({name:name,age:age,id:id})}}
         >
           Update
         </Button>

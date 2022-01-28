@@ -30,7 +30,7 @@ const Read = ({ initialDetails, updatedData,handleDeleteClick }) => {
         {initialDetails.map((data,index) => {
           return (
             <div>
-              <List
+              <List key={index}
                 sx={{
                   width: "100%",
                   maxWidth: 360,
