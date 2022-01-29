@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { useHistory } from "react-router-dom";
 import "../App.css";
 
 const Create = ({
@@ -21,6 +22,7 @@ const Create = ({
     borderRadius: "5px",
     margin: "2rem 4rem",
   };
+  const history = useHistory();
   const styles = { color: "white", textAlign: "center", margin: "2rem 4rem" };
 
   return (
@@ -75,6 +77,7 @@ const Create = ({
             console.log(newEmpData);
 
             updatedData([...initialDetails, newEmpData]);
+            history.push("/users/")
           }}
         >
           Submit

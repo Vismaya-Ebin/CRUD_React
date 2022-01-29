@@ -31,7 +31,7 @@ function App() {
   const [id, updatedId] = useState("");
   const [name, updatedName] = useState("");
   const [age, updatedAge] = useState("");
-  const [editedList, updatedEditedList] = useState({});
+  
 
   const clearFields = () => {
     updatedId("");
@@ -40,21 +40,22 @@ function App() {
   };
 
 
-const updateData = (newData) => {
-  console.log("Incoming Data from Comp",newData);
-  const updatedList = initialData.map(data => {
-    console.log("Array Data",data);
-    if (data.id === newData.id) {
-      data.name = newData.name
-      data.age = newData.age
-    }
-    return data;
- });
- console.log(updatedList);
- console.log("FinalList",updatedList);
-  updatedData(updatedList);
+// const updateData = (newData) => {
+//   console.log("Incoming Data from Comp",newData);
+//   const updatedList = initialData.map(data => {
+//     console.log("Array Data",data);
+//     if (data.id === newData.id) {
+//       data.name = newData.name
+//       data.age = newData.age
+//     }
+//     return data;
+//  });
+//  console.log(updatedList);
+//  console.log("FinalList",updatedList);
+//   // updatedData(updatedList);
+//   updatedData(...initialDetails,updatedList);
  
-}
+// }
   const style = {
     fontWeight: "bold",
     fontSize: "1.3rem",
@@ -96,7 +97,7 @@ const updateData = (newData) => {
           <Read initialDetails={initialDetails} updatedData={updatedData} />
         </Route>
         <Route path="/edit-user/:index">
-          <Update initialDetails={initialDetails} updateData={updateData} />
+          <Update initialDetails={initialDetails} updateData={updatedData} />
         </Route>
         <Route path="**">
           <Notfound />

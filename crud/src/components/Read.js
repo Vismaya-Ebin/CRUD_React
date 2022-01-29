@@ -10,11 +10,10 @@ import WorkIcon from "@mui/icons-material/Work";
 import IconButton from "@mui/material/IconButton";
 
 import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
 import { useHistory } from "react-router-dom";
 
-
-const Read = ({ initialDetails, updatedData,handleDeleteClick }) => {
+const Read = ({ initialDetails, updatedData }) => {
   console.log("initialDetails", initialDetails);
 
   const history = useHistory();
@@ -23,21 +22,25 @@ const Read = ({ initialDetails, updatedData,handleDeleteClick }) => {
     color: "white",
     fontWeight: "bold",
   };
+
+  const marginLeft = {
+    marginLeft: "auto",
+  };
   return (
     <div>
       <h2 style={textDetails}>EMPLOYEE DETALIS</h2>
       <div className="App">
-        {initialDetails.map((data,index) => {
+        {initialDetails.map((data, index) => {
           return (
             <div>
-              <List key={index}
+              <List
                 sx={{
                   width: "100%",
                   maxWidth: 360,
                   bgcolor: "background.paper",
                 }}
               >
-                <ListItem>
+                <ListItem key={index}>
                   <ListItemAvatar>
                     <Avatar>
                       <WorkIcon />
@@ -63,20 +66,26 @@ const Read = ({ initialDetails, updatedData,handleDeleteClick }) => {
                 </ListItem>
 
                 <ListItem>
-                  <IconButton aria-label="delete">
-                    <DeleteIcon onClick={()=>{
-                   
-                      const remainingItem = initialDetails.filter((item,indx) => {
-                        return index !== indx;
-                      });
+                  <DeleteIcon
+                    color="error"
+                    onClick={() => {
+                      const remainingItem = initialDetails.filter(
+                        (item, indx) => {
+                          return index !== indx;
+                        }
+                      );
                       console.log(remainingItem);
                       updatedData(remainingItem);
-                      }
-                        }/>
-                  </IconButton> 
-                   <IconButton aria-label="edit">
-                    <EditIcon  onClick={()=>{history.push("/edit-user/"+index)}} />
-                   </IconButton>
+                    }}
+                  />
+
+                  <EditIcon
+                    color="success"
+                    style={marginLeft}
+                    onClick={() => {
+                      history.push("/edit-user/" + index);
+                    }}
+                  />
                 </ListItem>
               </List>
             </div>
