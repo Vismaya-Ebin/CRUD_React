@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { useHistory } from "react-router-dom";
+import { useHistory,useParams } from "react-router-dom";
 import "../App.css";
 
-const Create = ({
+const EditUser = ({
   initialDetails,
   updatedDetails
   
@@ -18,10 +18,12 @@ const Create = ({
     margin: "2rem 4rem",
   };
   const history = useHistory();
+  const {index} = useParams();
+  const copyData =initialDetails[index];
   const styles = { color: "white", textAlign: "center", margin: "2rem 4rem" };
-  const [id, updatedId] = useState("");
-  const [name, updatedName] = useState("");
-  const [phone, updatedPhone] = useState("");
+  const [id, updatedId] = useState(copyData.adhar_id);
+  const [name, updatedName] = useState(copyData.name);
+  const [phone, updatedPhone] = useState(copyData.phone);
 
   return (
     <main>
@@ -32,7 +34,7 @@ const Create = ({
           value={id}
           label="AADHAR NUMBER"
           variant="outlined"
-          color="primary"
+          color="secondary"
           fullWidth
           onChange={(e) => {
             updatedId(e.target.value);
@@ -43,7 +45,7 @@ const Create = ({
           value={name}
           label="AADHAR NAME"
           variant="outlined"
-          color="primary"
+          color="secondary"
           fullWidth
           onChange={(e) => {
             updatedName(e.target.value);
@@ -54,7 +56,7 @@ const Create = ({
           value={phone}
           label="CONTACT ON AADHAR"
           variant="outlined"
-          color="primary"
+          color="secondary"
           fullWidth
           onChange={(e) => {
             updatedPhone(e.target.value);
@@ -67,23 +69,26 @@ const Create = ({
           style={style}
           variant="contained"
           onClick={() => {
-            const newEmpData = {
+            const updatedData = {
               adhar_id: id,
               name: name,
               phone: phone,
             };
-            console.log(newEmpData);
-
-            updatedDetails([...initialDetails, newEmpData]);
+            console.log(updatedData);
+             const copyOfInitialDetails  = [...initialDetails];
+             copyOfInitialDetails[index] =updatedData;
+            updatedDetails(copyOfInitialDetails);
             history.push("/users/")
           }}
         >
           Submit
         </Button>
-      
+        <Button style={style} variant="contained">
+          Clear
+        </Button>
       </p>
     </main>
   );
 };
 
-export default Create;
+export default EditUser;

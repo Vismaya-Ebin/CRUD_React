@@ -5,57 +5,33 @@ import { useState } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import Notfound from "./components/Notfound";
 import { Welcome } from "./components/Welcome";
-import { Update } from "./components/Update.js";
+// import { Update } from "./components/Update.js";
+import EditUser from './components/EditUser.js';
 
 function App() {
   const initialData = [
     {
-      id: "1544390",
+      adhar_id: "614111111101",
       name: "Vismaya",
-      age: "30",
+      phone: "9847443444",
     },
     {
-      id: "1544391",
-      name: "Neethu",
-      age: "33",
+      adhar_id: "614111111102",
+      name: "Ebin",
+      phone: "9847443555",
     },
     {
-      id: "1544392",
-      name: "Susmitha",
-      age: "13",
+      adhar_id: "614111111103",
+      name: "Elena",
+      phone: "9847443556",
     },
   ];
 
-  const [initialDetails, updatedData] = useState(initialData);
+  const [initialDetails, updatedDetails] = useState(initialData);
 
-  const [id, updatedId] = useState("");
-  const [name, updatedName] = useState("");
-  const [age, updatedAge] = useState("");
+  
   
 
-  const clearFields = () => {
-    updatedId("");
-    updatedName("");
-    updatedAge("");
-  };
-
-
-// const updateData = (newData) => {
-//   console.log("Incoming Data from Comp",newData);
-//   const updatedList = initialData.map(data => {
-//     console.log("Array Data",data);
-//     if (data.id === newData.id) {
-//       data.name = newData.name
-//       data.age = newData.age
-//     }
-//     return data;
-//  });
-//  console.log(updatedList);
-//  console.log("FinalList",updatedList);
-//   // updatedData(updatedList);
-//   updatedData(...initialDetails,updatedList);
- 
-// }
   const style = {
     fontWeight: "bold",
     fontSize: "1.3rem",
@@ -70,7 +46,7 @@ function App() {
             <Link to="/">HOME </Link>
           </li>
           <li style={style}>
-            <Link to="/create-user">CREATE </Link>
+            <Link to="/create-user">ADD </Link>
           </li>
           <li style={style}>
             <Link to="/users">SHOW</Link>
@@ -83,21 +59,17 @@ function App() {
         <Route path="/create-user">
           <Create
             initialDetails={initialDetails}
-            updatedData={updatedData}
-            id={id}
-            updatedId={updatedId}
-            name={name}
-            updatedName={updatedName}
-            age={age}
-            updatedAge={updatedAge}
-            clearFields={clearFields}
+            updatedDetails={updatedDetails}
+           
           />
         </Route>
         <Route path="/users">
-          <Read initialDetails={initialDetails} updatedData={updatedData} />
+          <Read initialDetails={initialDetails} updatedDetails={updatedDetails} />
         </Route>
         <Route path="/edit-user/:index">
-          <Update initialDetails={initialDetails} updateData={updatedData} />
+        
+        <EditUser initialDetails={initialDetails} updatedDetails={updatedDetails} />
+          {/* <Update initialDetails={initialDetails} updatedDetails={updatedDetails} /> */}
         </Route>
         <Route path="**">
           <Notfound />

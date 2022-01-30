@@ -7,14 +7,14 @@ import Avatar from "@mui/material/Avatar";
 import BadgeIcon from "@mui/icons-material/Badge";
 import NumbersIcon from "@mui/icons-material/Numbers";
 import WorkIcon from "@mui/icons-material/Work";
-import IconButton from "@mui/material/IconButton";
+
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { useHistory } from "react-router-dom";
 
-const Read = ({ initialDetails, updatedData }) => {
-  console.log("initialDetails", initialDetails);
+const Read = ({ initialDetails, updatedDetails }) => {
+ 
 
   const history = useHistory();
   const textDetails = {
@@ -28,9 +28,10 @@ const Read = ({ initialDetails, updatedData }) => {
   };
   return (
     <div>
-      <h2 style={textDetails}>EMPLOYEE DETALIS</h2>
+      <h2 style={textDetails}>AADHAR DETALIS</h2>
       <div className="App">
         {initialDetails.map((data, index) => {
+          
           return (
             <div>
               <List
@@ -46,7 +47,7 @@ const Read = ({ initialDetails, updatedData }) => {
                       <WorkIcon />
                     </Avatar>
                   </ListItemAvatar>
-                  <ListItemText primary="Employee ID" secondary={data.id} />
+                  <ListItemText primary="Aadhar Id" secondary={data.adhar_id} />
                 </ListItem>
                 <ListItem>
                   <ListItemAvatar>
@@ -54,7 +55,7 @@ const Read = ({ initialDetails, updatedData }) => {
                       <BadgeIcon />
                     </Avatar>
                   </ListItemAvatar>
-                  <ListItemText primary="Employee Name" secondary={data.name} />
+                  <ListItemText primary="Aadhar Name" secondary={data.name} />
                 </ListItem>
                 <ListItem>
                   <ListItemAvatar>
@@ -62,7 +63,7 @@ const Read = ({ initialDetails, updatedData }) => {
                       <NumbersIcon />
                     </Avatar>
                   </ListItemAvatar>
-                  <ListItemText primary="Employee Age" secondary={data.age} />
+                  <ListItemText primary="Phone Number" secondary={data.phone} />
                 </ListItem>
 
                 <ListItem>
@@ -75,7 +76,7 @@ const Read = ({ initialDetails, updatedData }) => {
                         }
                       );
                       console.log(remainingItem);
-                      updatedData(remainingItem);
+                      updatedDetails(remainingItem);
                     }}
                   />
 

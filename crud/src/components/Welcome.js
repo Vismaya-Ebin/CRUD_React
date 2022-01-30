@@ -6,6 +6,7 @@ export function Welcome() {
     flexDirection: "column",
     textAlign: "center",
     flexWrap: "wrap",
+    border:"12px solid white"
   };
   const imageStyle = {
     objectFit: "fill",
@@ -13,7 +14,9 @@ export function Welcome() {
   };
   return (
     <div style={style}>
-      <img style={imageStyle} src={WelcomeImage} alt="" />
+
+      <h1>ADD UPDATE AADHAR DETAILS</h1>
+      {/* <img style={imageStyle} src={WelcomeImage} alt="" /> */}
     </div>
   );
 }
