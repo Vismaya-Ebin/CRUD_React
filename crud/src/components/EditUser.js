@@ -1,15 +1,10 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useHistory,useParams } from "react-router-dom";
 import "../App.css";
 
-const EditUser = ({
-  initialDetails,
-  updatedDetails
-  
- 
-}) => {
+const EditUser = ({context}) => {
   const style = {
     color: "white",
     background: "black",
@@ -17,6 +12,7 @@ const EditUser = ({
     borderRadius: "5px",
     margin: "2rem 4rem",
   };
+  const {initialDetails,updatedDetails} = useContext(context);
   const history = useHistory();
   const {index} = useParams();
   const copyData =initialDetails[index];

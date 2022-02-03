@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useHistory } from "react-router-dom";
 import "../App.css";
 
 const Create = ({
-  initialDetails,
-  updatedDetails
+  context
   
  
 }) => {
@@ -22,6 +21,8 @@ const Create = ({
   const [id, updatedId] = useState("");
   const [name, updatedName] = useState("");
   const [phone, updatedPhone] = useState("");
+  const {initialDetails,updatedDetails} = useContext(context);
+  
 
   return (
     <main>

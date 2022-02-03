@@ -7,15 +7,16 @@ import Avatar from "@mui/material/Avatar";
 import BadgeIcon from "@mui/icons-material/Badge";
 import NumbersIcon from "@mui/icons-material/Numbers";
 import WorkIcon from "@mui/icons-material/Work";
+import {useContext} from "react";
 
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { useHistory } from "react-router-dom";
 
-const Read = ({ initialDetails, updatedDetails }) => {
+const Read = ({ context }) => {
  
-
+const {initialDetails,updatedDetails}  = useContext(context);
   const history = useHistory();
   const textDetails = {
     textAlign: "center",

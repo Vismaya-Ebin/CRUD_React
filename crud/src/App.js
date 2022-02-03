@@ -1,13 +1,14 @@
 import "./App.css";
 import Create from "./components/Create.js";
 import Read from "./components/Read.js";
-import { useState } from "react";
+import { useState, createContext } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import Notfound from "./components/Notfound";
 import { Welcome } from "./components/Welcome";
 // import { Update } from "./components/Update.js";
-import EditUser from './components/EditUser.js';
+import EditUser from "./components/EditUser.js";
 
+const context = createContext(null);
 function App() {
   const initialData = [
     {
@@ -28,9 +29,10 @@ function App() {
   ];
 
   const [initialDetails, updatedDetails] = useState(initialData);
-
-  
-  
+  const data = {
+    initialDetails: initialDetails,
+    updatedDetails: updatedDetails,
+  };
 
   const style = {
     fontWeight: "bold",
@@ -39,43 +41,42 @@ function App() {
     marginLeft: "3.2rem",
   };
   return (
-    <div>
-      <header className="header">
-        <ul>
-        <li style={style}>
-            <Link to="/">HOME </Link>
-          </li>
-          <li style={style}>
-            <Link to="/create-user">ADD </Link>
-          </li>
-          <li style={style}>
-            <Link to="/users">SHOW</Link>
-          </li>
-        </ul>
-      </header>
-      <hr />
-      <Switch>
-       <Route path="/" exact> <Welcome/></Route>
-        <Route path="/create-user">
-          <Create
-            initialDetails={initialDetails}
-            updatedDetails={updatedDetails}
-           
-          />
-        </Route>
-        <Route path="/users">
-          <Read initialDetails={initialDetails} updatedDetails={updatedDetails} />
-        </Route>
-        <Route path="/edit-user/:index">
-        
-        <EditUser initialDetails={initialDetails} updatedDetails={updatedDetails} />
-          {/* <Update initialDetails={initialDetails} updatedDetails={updatedDetails} /> */}
-        </Route>
-        <Route path="**">
-          <Notfound />
-        </Route>
-      </Switch>
-    </div>
+    <context.Provider value={data}>
+      <div>
+        <header className="header">
+          <ul>
+            <li style={style}>
+              <Link to="/">HOME </Link>
+            </li>
+            <li style={style}>
+              <Link to="/create-user">ADD </Link>
+            </li>
+            <li style={style}>
+              <Link to="/users">SHOW</Link>
+            </li>
+          </ul>
+        </header>
+        <hr />
+        <Switch>
+          <Route path="/" exact>
+            {" "}
+            <Welcome />
+          </Route>
+          <Route path="/create-user">
+            <Create context={context} />
+          </Route>
+          <Route path="/users">
+            <Read context={context} />
+          </Route>
+          <Route path="/edit-user/:index">
+            <EditUser context={context} />
+          </Route>
+          <Route path="**">
+            <Notfound />
+          </Route>
+        </Switch>
+      </div>
+    </context.Provider>
   );
 }
 
